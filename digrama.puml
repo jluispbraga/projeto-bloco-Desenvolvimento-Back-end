@@ -1,0 +1,37 @@
+@startuml
+class Investidor {
+  - id: Long
+  - nome: String
+}
+class Carteira {
+  - id: Long
+  - nomeCarteira: String
+}
+class Ativo {
+  - id: Long
+  - tipo: String
+  - quantidade: Integer
+  - precoMedio: BigDecimal
+}
+class HistoricoInvestimento {
+  - id: Long
+  - dataTransacao: LocalDate
+  - valorTransacao: BigDecimal
+}
+class Relatorio {
+  - id: Long
+  - periodoInicio: LocalDate
+  - periodoFim: LocalDate
+  - totalInvestido: BigDecimal
+}
+class AlertaMercado {
+  - id: Long
+  - limiteVariacao: BigDecimal
+}
+Investidor "1" -- "*" Carteira
+Carteira "1" -- "*" Ativo
+Ativo "1" -- "*" HistoricoInvestimento
+Investidor "1" -- "*" Relatorio
+Investidor "1" -- "*" AlertaMercado
+Ativo "*" .. "*" AlertaMercado : monitora
+@enduml
